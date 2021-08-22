@@ -22,3 +22,5 @@ def about(request):
 
 def help_fq(request):
     return render(request, 'tour_app/help.html')
+
+

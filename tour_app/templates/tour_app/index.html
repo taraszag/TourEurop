@@ -1,13 +1,17 @@
 {% extends "tour_app/base.html" %}
 {% load static %}
 {% block title %}
-    Tours
+    Home
 {% endblock %}
 
 {% block description %}
+    {% if messages %}
+        {% for message in messages %}
+            <div><h4>{{ message }}</h4></div>
+        {% endfor %}
+    {% endif %}
     <!-- Site Overlay -->
     <div class="site-overlay"></div>
-
     <section id="feat">
         <div class="container">
             <div class="row features">
@@ -33,22 +37,24 @@
         </div>
     </section>
     <!-- POSTS -->
-    <section id="news" class="blog wow fadeInUp" data-wow-delay="300ms">
+    <section id="tours" class="blog wow fadeInUp" data-wow-delay="300ms">
         <div class="container">
             <div class="row">
-                <div class="col-md-7">
-                    {% for post in posts %}
-                        <div>
-                            <h3>{{ post.NameTour }}</h3>
-                            <h4>{{ post.TypeTour }}</h4>
-                            <h5>{{ post.Price }} euro</h5>
-                            <img src="{{ post.Photo }}" alt="" class="img-responsive">
-                            <a class="btn btn-danger btn-lg" href="#">Take a Look <i
-                                    class="fa fa-arrow-circle-o-right"></i>
-                            </a>
-                            <hr/>
-                        </div>
-                    {% endfor %}
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="col-md-20">
+                        {% for post in posts %}
+                            <div>
+                                <h3>{{ post.NameTour }}</h3>
+                                <h4>{{ post.TypeTour }}</h4>
+                                <h5>{{ post.Price }} euro</h5>
+                                <img src="{{ post.Photo }}" alt="" class="img-responsive">
+                                <a class="btn btn-danger btn-lg" href="#">Take a Look <i
+                                        class="fa fa-arrow-circle-o-right"></i>
+                                </a>
+                                <hr/>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>
