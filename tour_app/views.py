@@ -18,3 +18,7 @@ def index(request):
 
 def about(request):
     return render(request, 'tour_app/about.html')
+
+
+def help_fq(request):
+    return render(request, 'tour_app/help.html')
