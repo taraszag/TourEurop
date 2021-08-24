@@ -10,6 +10,7 @@
             <div><h4>{{ message }}</h4></div>
         {% endfor %}
     {% endif %}
+
     <!-- Site Overlay -->
     <div class="site-overlay"></div>
     <section id="feat">
@@ -48,9 +49,13 @@
                                 <h4>{{ post.TypeTour }}</h4>
                                 <h5>{{ post.Price }} euro</h5>
                                 <img src="{{ post.Photo }}" alt="" class="img-responsive">
-                                <a class="btn btn-danger btn-lg" href="#">Take a Look <i
-                                        class="fa fa-arrow-circle-o-right"></i>
+                                <a class="btn btn-danger btn-lg"
+                                   href="{% url 'tour_app-detail' post.id %}">Take
+                                    a Look <i class="fa fa-arrow-circle-o-right"></i>
                                 </a>
+                                <div> {% if post.Author.profile %}
+                                    <p>Author: {{ post.Author.username }}</p>
+                                {% endif %}</div>
                                 <hr/>
                             </div>
                         {% endfor %}
@@ -156,5 +161,4 @@
     </section>
 
 {% endblock %}
-
 

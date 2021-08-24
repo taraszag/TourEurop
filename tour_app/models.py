@@ -10,9 +10,13 @@ class Post(models.Model):
     Photo = models.CharField(max_length=500)
     Author = models.ForeignKey(User, null=True, default=None, blank=True,
                                on_delete=models.CASCADE)
+    CreationDate = models.DateField(auto_now_add=True, null=True, blank=True)
 
     def __str__(self):
         return self.NameTour
+
+    class Meta:
+        ordering = ["-CreationDate"]
 
 # class Cart(models.Model):
 #     UserId = models.ForeignKey(User, null=True, default=None, blank=True,
