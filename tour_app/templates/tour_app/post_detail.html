@@ -1,0 +1,33 @@
+{% extends "tour_app/base.html" %}
+{% load static %}
+{% block title %}
+    Detail Post
+{% endblock %}
+
+{% block description %}
+    <!-- POSTS -->
+    <section id="tours" class="blog wow fadeInUp" data-wow-delay="300ms">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-10">
+                    <div class="col-md-20">
+                        <div>
+                            <h3>{{ post.NameTour }}</h3>
+                            <h4>{{ post.TypeTour }}</h4>
+                            <h5>{{ post.Price }} euro</h5>
+                            <img src="{{ post.Photo }}" alt="" class="img-responsive">
+                            <a class="btn btn-danger btn-lg" href="/#tours">All Tours<i
+                                    class="fa fa-arrow-circle-o-right"></i>
+                            </a>
+                            <div> {% if post.Author.profile %}
+                                <p>Author: {{ post.Author.username }}</p>
+                            {% endif %}</div>
+                            <hr/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
