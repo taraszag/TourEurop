@@ -73,6 +73,7 @@
         <li><a href="/about/#contacts">Contacts</a></li>
         <li><a href="/help">Help</a></li>
         {% if user.is_authenticated %}
+            <li><a href="{% url 'users-profile' %}">Profile</a></li>
             <li><a href="{% url 'users-logout' %}">Log out</a></li>
         {% else %}
             <li><a href="{% url 'users-register' %}">Registration</a></li>

@@ -11,12 +11,11 @@ class Post(models.Model):
     Author = models.ForeignKey(User, null=True, default=None, blank=True,
                                on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.NameTour
 
 # class Cart(models.Model):
 #     UserId = models.ForeignKey(User, null=True, default=None, blank=True,
 #                                on_delete=models.CASCADE)
 #     ToursId = models.ForeignKey(Post, null=True, default=None, blank=True,
 #                                 on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.NameTour
