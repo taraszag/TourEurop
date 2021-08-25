@@ -1,0 +1,13 @@
+{% extends "tour_app/base.html" %}
+{% load crispy_forms_tags %}
+{% block description %}
+    <form method="POST">
+        {% csrf_token %}
+        <h3>Delete post.</h3>
+        <p>Are you sure you want to delete this post? "{{ object.NameTour }}"</p>
+        <div>
+            <button type="submit">Yes, Delete</button>
+            <a href="{% url 'tour_app-detail' object.id %}">Cancel</a>
+        </div>
+    </form>
+{% endblock %}
