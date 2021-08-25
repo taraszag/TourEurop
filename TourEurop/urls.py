@@ -34,6 +34,10 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name="users/login.html"), name="users-login"),
     path('logout/', auth_views.LogoutView.as_view(template_name="users/logout.html"), name="users-logout"),
     path('post/<int:pk>/', views.PostDetailViews.as_view(), name='tour_app-detail'),
+    path('tour/new/', views.PostCreateView.as_view(), name="tour_app-create"),
+    path('tour/<int:pk>/update', views.PostUpdateView.as_view(), name="tour_app-update"),
+    path('tour/user/<str:username>', views.UserPostListView.as_view(), name="tour_app-user_tours"),
+    path('tour/<int:pk>/delete', views.PostDeleteView.as_view(), name="tour_app-delete"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

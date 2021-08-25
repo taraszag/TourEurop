@@ -12,10 +12,30 @@
                 <div class="col-md-offset-2 col-md-10">
                     <div class="col-md-20">
                         <div>
-                            <h3>{{ post.NameTour }}</h3>
-                            <h4>{{ post.TypeTour }}</h4>
-                            <h5>{{ post.Price }} euro</h5>
-                            <img src="{{ post.Photo }}" alt="" class="img-responsive">
+                            <p>
+                                {% if object.Author == user %}
+                                    <a href="{% url 'tour_app-update' object.id %}">
+                                        <button>Update tour</button>
+                                    </a>
+                                    <a href="{% url 'tour_app-delete' object.id %}">
+                                        <button>Delete tour</button>
+                                    </a>
+                                {% endif %}
+                            </p>
+                            <p>
+                                <a href="{% url 'tour_app-user_tours' post.Author.username %}">
+                                    {% if object.Author.profile and object.Author.profile.image %}
+                                        <img style="width: 150px; height: 150px;"
+                                             src="{{ object.Author.profile.image.url }}"
+                                             alt="{{ object.Author.username }}">
+                                    {% endif %}
+                                    <span>{{ object.Author.username }}</span>
+                                </a>
+                            </p>
+                            <h3>{{ object.NameTour }}</h3>
+                            <h4>{{ object.TypeTour }}</h4>
+                            <h5>{{ object.Price }} euro</h5>
+                            <img src="{{ object.Photo }}" alt="" class="img-responsive">
                             <a class="btn btn-danger btn-lg" href="/#tours">All Tours<i
                                     class="fa fa-arrow-circle-o-right"></i>
                             </a>
