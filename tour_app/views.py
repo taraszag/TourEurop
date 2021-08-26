@@ -1,9 +1,11 @@
 # Create your views here.
-from django.shortcuts import render, get_object_or_404
+from django.views.generic.base import View
+from django.shortcuts import render, get_object_or_404, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post
+from .filter import PostFilter
 
 
 # Create your views here.
@@ -16,11 +18,36 @@ def index(request):
     return render(request, 'tour_app/index.html', context)
 
 
-class PostListView(ListView):
+def page_not_found(request, exception):
+    context = None
+    if "tried" in str(exception):
+        context = {"exception": "Page not found"}
+    else:
+        context = {"exception": exception}
+    return render(request, "tour_app/404.html", context)
+
+
+class FilterPostListView(ListView):
+    filter_class = None
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        req = self.request.GET
+        self.filtered = self.filter_class(req, qs)
+        return self.filtered.qs.distinct()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["filter"] = self.filtered
+        return context
+
+
+class PostListView(FilterPostListView):
     model = Post
+    filter_class = PostFilter
     template_name = "tour_app/index.html"
     context_object_name = "posts"
-    paginate_by = 10
+    paginate_by = 5
 
 
 class UserPostListView(ListView):

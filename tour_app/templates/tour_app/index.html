@@ -1,5 +1,6 @@
 {% extends "tour_app/base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block title %}
     Home
 {% endblock %}
@@ -11,30 +12,18 @@
         {% endfor %}
     {% endif %}
 
-    <!-- Site Overlay -->
+    <!-- filter -->
     <div class="site-overlay"></div>
-    <section id="feat">
+    <section id="filter">
         <div class="container">
-            <div class="row features">
-                <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="100ms">
-                    <span class="typcn typcn-pencil x3"></span>
-                    <h4>Consectetur Risus</h4>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida
-                        at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                </div>
-                <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="300ms">
-                    <span class="typcn typcn-camera-outline x3"></span>
-                    <h4>Ultricies Aenean</h4>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Integer posuere erat a ante
-                        venenatis dapibus posuere velit aliquet. Donec ullamcorper nulla non metus auctor fringilla.</p>
-                </div>
-                <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="500ms">
-                    <span class="typcn typcn-bookmark x3"></span>
-                    <h4>Cras Sollicitudin</h4>
-                    <p>Etiam porta sem malesuada magna mollis euismod. Aenean eu leo quam. Pellentesque ornare sem
-                        lacinia quam venenatis vestibulum. Maecenas faucibus mollis interdum.</p>
-                </div>
-            </div>
+            <form method="GET">
+                {% csrf_token %}
+                {{ filter.form|crispy }}
+                <p>
+                    <button type="submit">Filtered posts</button>
+                </p>
+            </form>
+        </div>
         </div>
     </section>
     <!-- POSTS -->

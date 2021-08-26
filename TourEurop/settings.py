@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'main',
     'tour_app',
     'users',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
